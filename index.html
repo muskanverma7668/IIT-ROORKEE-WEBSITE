@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMJN PG COLLEGE, HARIDWAR - E-Learning</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f7fa;
+            color: #222;
+        }
+        header {
+            background: linear-gradient(90deg, #004080 70%, #0099ff 100%);
+            color: #fff;
+            padding: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+        }
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .nav-links li a:hover {
+            background: rgba(255,255,255,0.18);
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px 100px 20px;
+            position: relative;
+        }
+        .hero::after {
+            content: "";
+            background: rgba(0,64,128,0.5);
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 28px;
+        }
+        .cta {
+            background: #ffb300;
+            color: #fff;
+            border: none;
+            padding: 16px 36px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cta:hover {
+            background: #ff9800;
+        }
+        .section {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            padding: 40px 20px 20px 20px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .section h2 {
+            text-align: center;
+            color: #004080;
+            margin-bottom: 18px;
+        }
+        /* Course Catalog */
+        .course-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        #search {
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            width: 250px;
+        }
+        #filter-subject {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #bbb;
+            background: #f4f7fa;
+        }
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 24px;
+        }
+        .course-card {
+            background: #f9fbfd;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .course-card:hover {
+            transform: translateY(-6px) scale(1.03);
+        }
+        .course-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 7px;
+            margin-bottom: 14px;
+        }
+        .course-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #0056b3;
+        }
+        .course-description {
+            font-size: 0.97em;
+            margin-bottom: 10px;
+            color: #444;
+            text-align: center;
+        }
+        .course-rating {
+            color: #ff9800;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .enroll-btn {
+            background: #0073e6;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: auto;
+            transition: background 0.2s;
+        }
+        .enroll-btn:hover {
+            background: #005bb5;
+        }
+        /* About, Pricing, Contact, Login */
+        .about-img {
+            float: right;
+            width: 220px;
+            margin-left: 24px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .pricing-card {
+            background: #f4f7fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 24px 32px;
+            min-width: 220px;
+            text-align: center;
+        }
+        .pricing-card h3 {
+            color: #0073e6;
+        }
+        .pricing-card .price {
+            font-size: 2em;
+            color: #ff9800;
+            margin: 10px 0;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .login-form {
+            max-width: 350px;
+            margin: 0 auto;
+            background: #f4f7fa;
+            padding: 28px 22px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 14px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background: #0073e6;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+        .login-form button:hover {
+            background: #005bb5;
+        }
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #004080 70%, #0099ff 100%);
+            color: #fff;
+            text-align: center;
+            padding: 28px 10px 18px 10px;
+            margin-top: 40px;
+        }
+        .footer-links {
+            margin-bottom: 8px;
+        }
+        .footer-links a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .social-media a {
+            color: #fff;
+            margin: 0 8px;
+            font-size: 1.2em;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav { flex-direction: column; align-items: flex-start;}
+            .logo {margin-bottom: 8px;}
+            .pricing-table {flex-direction: column; align-items: center;}
+            .about-img {float: none; display: block; margin: 0 auto 18px auto;}
+        }
+        @media (max-width: 600px) {
+            .section {padding: 20px 5px;}
+            .hero {padding: 60px 5px 60px 5px;}
+            .course-list {grid-template-columns: 1fr;}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">IIT ROORKEE</div>
+            <ul class="nav-links">
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#login">Login/Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to IIT ROORKEE E-Learning Platform</h1>
+            <p>Empowering students with knowledge, skills, and digital learning. Join our vibrant academic community!</p>
+            <button class="cta" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">Start Learning Now</button>
+        </div>
+    </section>
+
+    <!-- Course Catalog -->
+    <section id="courses" class="section">
+        <h2>Our Courses</h2>
+        <div class="course-controls">
+            <input type="text" id="search" placeholder="Search courses..." aria-label="Search courses">
+            <select id="filter-subject" aria-label="Filter by subject">
+                <option value="all">All Subjects</option>
+                <option value="science">Science</option>
+                <option value="arts">Arts</option>
+                <option value="commerce">Commerce</option>
+            </select>
+        </div>
+        <div class="course-list" id="course-list">
+            <!-- Course cards will be inserted here -->
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="College Building" class="about-img">
+        <p>
+            <strong>SMJN (PG) College, Haridwar</strong> is one of the oldest and most reputed educational institutes of Uttarakhand. Established in 1960, the college is affiliated to Shri Dev Suman Uttarakhand State University and offers a wide range of undergraduate and postgraduate courses in Science, Commerce, and Arts streams.<br><br>
+            Our campus features modern labs, a rich library, sports facilities, and a vibrant student community. We are committed to academic excellence and holistic development, empowering students for a bright future.
+        </p>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+        <h2>Pricing</h2>
+        <div class="pricing-table">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">₹999</div>
+                <ul style="text-align:left;">
+                    <li>Access to 3 courses</li>
+                    <li>Community Support</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Standard</h3>
+                <div class="price">₹1999</div>
+                <ul style="text-align:left;">
+                    <li>Access to all UG courses</li>
+                    <li>Certificate of Completion</li>
+                    <li>Email Support</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Premium</h3>
+                <div class="price">₹2999</div>
+                <ul style="text-align:left;">
+                    <li>All courses (UG + PG)</li>
+                    <li>1-on-1 Mentorship</li>
+                    <li>Priority Support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p><strong>Address:</strong> S.M.J.N (P.G) College, Govindpuri, Ranipur More, Haridwar, Uttarakhand</p>
+            <p><strong>Phone:</strong> 9760488250, 6395401881, 9568705500</p>
+            <p><strong>Email:</strong> principal@smjncollege.ac.in</p>
+            <img src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=400&q=80" alt="Contact" style="max-width:180px; border-radius:8px; margin-top:14px;">
+        </div>
+    </section>
+
+    <!-- Login/Signup -->
+    <section id="login" class="section">
+        <h2>Login / Signup</h2>
+        <form class="login-form" autocomplete="off">
+            <input type="email" placeholder="Email" required aria-label="Email">
+            <input type="password" placeholder="Password" required aria-label="Password">
+            <button type="submit">Login</button>
+            <button type="button" onclick="alert('Signup functionality coming soon!')">Sign Up</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#courses">Courses</a> |
+            <a href="#about">About</a> |
+            <a href="#pricing">Pricing</a> |
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-media">
+            <a href="#" aria-label="Facebook" title="Facebook">🌐</a>
+            <a href="#" aria-label="Twitter" title="Twitter">🐦</a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn">💼</a>
+        </div>
+        <div style="margin-top:8px;">
+            &copy; 2025 SMJN PG COLLEGE, HARIDWAR | All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript for Course Catalog -->
+    <script>
+        // Sample course data with images
+        const courses = [
+            {
+                id: 1,
+                title: "Physics Basics",
+                subject: "science",
+                description: "Learn the fundamentals of physics with interactive modules and real-life examples.",
+                rating: 4.5,
+                img: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: 2,
+                title: "Introduction to Art History",
+                subject: "arts",
+                description: "Explore the evolution of art from ancient to modern times, with image galleries.",
+                rating: 4.0,
+                img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: 3,
+                title: "Business Management",
+                subject: "commerce",
+                description: "Basics of managing a business, leadership skills, and entrepreneurship.",
+                rating: 4.2,
+                img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: 4,
+                title: "Chemistry 101",
+                subject: "science",
+                description: "Introduction to chemistry concepts with virtual lab simulations.",
+                rating: 4.3,
+                img: "https://images.unsplash.com/photo-1465101178521-c1a9136a3f43?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: 5,
+                title: "Creative Writing",
+                subject: "arts",
+                description: "Improve your writing skills with expert guidance and peer reviews.",
+                rating: 4.1,
+                img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+            }
+        ];
+
+        const courseList = document.getElementById('course-list');
+        const searchInput = document.getElementById('search');
+        const filterSubject = document.getElementById('filter-subject');
+
+        function displayCourses(filteredCourses) {
+            courseList.innerHTML = '';
+            if (filteredCourses.length === 0) {
+                courseList.innerHTML = '<div style="grid-column: 1/-1; text-align:center;">No courses found.</div>';
+                return;
+            }
+            filteredCourses.forEach(course => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                    <img src="${course.img}" alt="${course.title}" class="course-img" />
+                    <div class="course-title">${course.title}</div>
+                    <div class="course-description">${course.description}</div>
+                    <div class="course-rating">Rating: ${course.rating} &#9733;</div>
+                    <button class="enroll-btn" onclick="enroll(${course.id})">Enroll Now</button>
+                `;
+                courseList.appendChild(card);
+            });
+        }
+
+        function enroll(courseId) {
+            const course = courses.find(c => c.id === courseId);
+            alert('Enrolled in: ' + course.title);
+        }
+        window.enroll = enroll; // make it accessible in HTML
+
+        function filterAndSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const subjectFilter = filterSubject.value;
+            const filtered = courses.filter(course => {
+                const matchesSubject = subjectFilter === 'all' || course.subject === subjectFilter;
+                const matchesSearch = course.title.toLowerCase().includes(searchTerm) || course.description.toLowerCase().includes(searchTerm);
+                return matchesSubject && matchesSearch;
+            });
+            displayCourses(filtered);
+        }
+
+        searchInput.addEventListener('input', filterAndSearch);
+        filterSubject.addEventListener('change', filterAndSearch);
+
+        // Initial display
+        displayCourses(courses);
+
+        // Accessibility: Keyboard navigation for nav links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.setAttribute('tabindex', '0');
+        });
+    </script>
+</body>
+</html>
